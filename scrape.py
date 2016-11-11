@@ -1,6 +1,6 @@
 from lxml import html
 import requests
-from models.owl import Owls, Owl
+from models import Owl
 # from pymongo import MongoClient
 
 page = requests.get('http://www.audubon.org/birds-of-america?query=owl&sort_by=field_boa_plate_value&sort_order=ASC')

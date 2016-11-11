@@ -1,0 +1,13 @@
+[{
+	"id": "582024474b8b2ad697accb0c",
+	"name": "Jaylyn Everill",
+	"email": "jaylyn@example.com",
+	"owls": ["5820191b4b8b2ad697accb0a", "5820191b4b8b2ad697accb0b", "5820191b4b8b2ad697accb0c"],
+	"authId": "1"
+}, {
+	"id": "582024474b8b2ad697accb0d",
+	"name": "Indiana Chadwick",
+	"email": "indiana@example.com",
+	"owls": ["5820191b4b8b2ad697accb0a", "5820191b4b8b2ad697accb0b", "5820191b4b8b2ad697accb0c"],
+	"authId": "2"
+}]
