@@ -1,31 +1,31 @@
 [{
-	"id": "582020364b8b2ad697accb0b",
+	"id": 1,
 	"rating": 7,
-	"owl": "5820191b4b8b2ad697accb0a",
-	"user": "582024474b8b2ad697accb0c"
+	"owl_id": 1,
+	"reviewer_id": 1
 }, {
-	"id": "582020364b8b2ad697accb0c",
+	"id": 2,
 	"rating": 1,
-	"owl": "5820191b4b8b2ad697accb0b",
-	"user": "582024474b8b2ad697accb0c"
+	"owl_id": 2,
+	"reviewer_id": 1
 }, {
-	"id": "582020364b8b2ad697accb0d",
+	"id": 3,
 	"rating": 6,
-	"owl": "5820191b4b8b2ad697accb0c",
-	"user": "582024474b8b2ad697accb0c"
+	"owl_id": 3,
+	"reviewer_id": 1
 }, {
-	"id": "582020364b8b2ad697accb0e",
+	"id": 4,
 	"rating": 5,
-	"owl": "5820191b4b8b2ad697accb0a",
-	"user": "582024474b8b2ad697accb0d"
+	"owl_id": 1,
+	"reviewer_id": 2
 }, {
-	"id": "582020364b8b2ad697accb0f",
+	"id": 5,
 	"rating": 9,
-	"owl": "5820191b4b8b2ad697accb0b",
-	"user": "582024474b8b2ad697accb0d"
+	"owl_id": 2,
+	"reviewer_id": 2
 }, {
-	"id": "582020364b8b2ad697accb10",
+	"id": 6,
 	"rating": 6,
-	"owl": "5820191b4b8b2ad697accb0c",
-	"user": "582024474b8b2ad697accb0d"
+	"owl_id": 3,
+	"reviewer_id": 2
 }]
