@@ -1,0 +1,7 @@
+<nav>
+	<ul id="navigation">
+		{% for title, href in [("Owls", "/owls"), ("Reviewers", "/reviewers"), ("About", "/about")] %}
+		<li><a href="{{href}}">{{title}}</a></li>
+		{% endfor %}
+	</ul>
+</nav>

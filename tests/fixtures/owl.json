@@ -1,19 +1,13 @@
 [{
-	"id": "5820191b4b8b2ad697accb0a",
+	"id": 1,
 	"name": "Little Owl",
-	"description": ["A small owl"],
-	"image": "http://placeowl.com/200/300",
-	"avg_rating": 6.0
+	"image": "http://placeowl.com/200/300"
 }, {
-	"id": "5820191b4b8b2ad697accb0b",
+	"id": 2,
 	"name": "Barred Owl",
-	"description": ["A bared owl"],
-	"image": "http://placeowl.com/200/300",
-	"avg_rating": 5.0
+	"image": "http://placeowl.com/200/300"
 },{
-	"id": "5820191b4b8b2ad697accb0c",
+	"id": 3,
 	"name": "Burrowing Owl",
-	"description": ["An owl burrow"],
-	"image": "http://placeowl.com/200/300",
-	"avg_rating": 6.0
+	"image": "http://placeowl.com/200/300"
 }]
