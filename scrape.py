@@ -1,8 +1,10 @@
 from lxml import html
 import requests
-from database import *
+# import boto
+# s3 = boto.connect_s3()
+from PIL import Image
 
-from app import app, db
+from database.schemas import *
 
 page = requests.get('http://www.audubon.org/birds-of-america?query=owl&sort_by=field_boa_plate_value&sort_order=ASC')
 tree = html.fromstring(page.content)
@@ -20,6 +22,9 @@ for img in owl_images:
 	img_plate = img_arr[len(img_arr) - 1].split("?")[0]
 	img_link = 'http://df0bd6h5ujoev.cloudfront.net/' + img_plate
 	owl_images_hq.append(img_link)
+
+link = owl_images_hq[0]
+print(link)
 
 # for link in owl_links:
 # 	owl_link = 'http://www.audubon.org' + link

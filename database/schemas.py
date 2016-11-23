@@ -41,7 +41,7 @@ class OwlDescription(db.Model):
 	created = db.Column(db.DateTime, default=datetime.now)
 	updated = db.Column(db.DateTime, default=datetime.now)
 	__table_args__ = (
-		db.UniqueConstraint('owl_id', 'idx', name='owl_idx_uc'),
+		db.UniqueConstraint('owl_id', 'idx', name='_owl_idx_uc'),
 		{})
 
 class Reviewer(db.Model):
@@ -65,7 +65,7 @@ class Rating(db.Model):
 	updated = db.Column(db.DateTime, default=datetime.now)
 	__table_args__ = (
 		db.CheckConstraint('rating >= 0 and rating <= 10', name='check_rating_range'),
-		db.UniqueConstraint('owl_id', 'reviewer_id', name='owl_reviewer_uc'),
+		db.UniqueConstraint('owl_id', 'reviewer_id', name='_owl_reviewer_uc'),
 		{})
 	def __repr__(self):
 		return '<Rating for owl {} with rating {}>'.format(self.owl_id, self.rating)

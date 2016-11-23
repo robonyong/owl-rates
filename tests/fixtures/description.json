@@ -1,20 +1,16 @@
 [{
-	"id": 1,
 	"description": "An owl burrow",
 	"owl_id": 3,
 	"idx": 0
 }, {
-	"id": 2,
 	"description": "A small owl",
 	"owl_id": 1,
 	"idx": 0
 }, {
-	"id": 3,
 	"description": "This owl has bars",
 	"owl_id": 2,
 	"idx": 1
 }, {
-	"id": 4,
 	"description": "A barred owl",
 	"owl_id": 2,
 	"idx": 0
