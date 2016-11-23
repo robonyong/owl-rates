@@ -1,9 +1,8 @@
 from flask_testing import TestCase
 from sqlalchemy.exc import *
-from app import create_test_app, db
+from app import create_app, db
 from database.schemas import *
 import json
-import logging
 
 def load_data_from_json(json_path):
   with open(json_path) as f:
@@ -12,33 +11,28 @@ def load_data_from_json(json_path):
 class DBTest(TestCase):
   def create_app(self):
     # pass in test configuration
-    return create_test_app()
+    return create_app('test_config.py')
 
   def setUp(self):
-    db.create_all()
+    def create_row(param_object, cls):
+      row = cls(**param_object)
+      db.session.add(row)
+      return row
+
     test_owls = load_data_from_json('tests/fixtures/owl.json')
     test_descs = load_data_from_json('tests/fixtures/description.json')
     test_ratings = load_data_from_json('tests/fixtures/rating.json')
     test_reviewers = load_data_from_json('tests/fixtures/reviewer.json')
     test_assigned_owls = load_data_from_json('tests/fixtures/assigned_owls.json')
-    for test_owl in test_owls:
-      owl = Owl(**test_owl)
-      db.session.add(owl)
 
-    for test_desc in test_descs:
-      desc = OwlDescription(**test_desc)
-      db.session.add(desc)
+    owls = [create_row(test_owl, Owl) for test_owl in test_owls]
+    [create_row(test_desc, OwlDescription) for test_desc in test_descs]
+    [create_row(test_rating, Rating) for test_rating in test_ratings]
 
     for test_reviewer in test_reviewers:
       reviewer = Reviewer(**test_reviewer)
+      reviewer.owls.extend(owls)
       db.session.add(reviewer)
-
-    for test_rating in test_ratings:
-      rating = Rating(**test_rating)
-      db.session.add(rating)
-
-    for assignment in test_assigned_owls:
-      assigned_owls.insert().values(assignment)
 
     db.session.commit()
 
@@ -133,3 +127,7 @@ class TestInsert(DBTest):
     db.session.add(reviewer)
     self.assertRaises(IntegrityError, db.session.commit)
     db.session.rollback()
+
+  def test_reviewer_assigned_owls(self):
+    reviewer = Reviewer.query.first()
+    assert len(reviewer.owls) == 3
