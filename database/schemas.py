@@ -11,6 +11,8 @@ assigned_owls = db.Table('assigned_owls',
 class Owl(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(100), unique=True, nullable=False)
+	slug = db.Column(db.String(24), unique=True)
+	nas_link = db.Column(db.String(140), unique=True)
 	descriptions = db.relationship('OwlDescription', backref='owl', lazy='dynamic', order_by='OwlDescription.idx')
 	image = db.Column(db.String(100), nullable=False)
 	image_web = db.Column(db.String(100))
