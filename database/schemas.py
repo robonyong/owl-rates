@@ -2,6 +2,7 @@ from app import db
 from datetime import datetime
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.sql import *
+from passlib.apps import custom_app_context as pwd_context
 
 assigned_owls = db.Table('assigned_owls',
 	db.Column('owl_id', db.Integer, db.ForeignKey('owl.id')),
@@ -28,9 +29,9 @@ class Owl(db.Model):
 	@avg_rating.expression
 	def avg_rating(cls):
 		return (select([func.avg(Rating.rating)]).
-      where(Rating.owl_id == cls.id).
-      label('avg_rating')
-    )
+			where(Rating.owl_id == cls.id).
+			label('avg_rating')
+		)
 
 	def __repr__(self):
 		return '<Owl #{} {}>'.format(self.id, self.name)
@@ -50,10 +51,17 @@ class Reviewer(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(100), nullable=False)
 	email = db.Column(db.String(100), unique=True, nullable=False)
+	password_hash = db.Column(db.String(128))
 	ratings = db.relationship('Rating', backref='reviewer', lazy='dynamic', cascade='delete')
 	owls = db.relationship('Owl', secondary=assigned_owls)
 	created = db.Column(db.DateTime, default=datetime.now)
 	updated = db.Column(db.DateTime, default=datetime.now)
+	def hash_password(self, password):
+		self.password_hash = pwd_context.encrypt(password)
+
+	def verify_password(self, password):
+		return pwd_context.verify(password, self.password_hash)
+		
 	def __repr__(self):
 		return '<Reviewer #{} {}>'.format(self.id, self.name)
 

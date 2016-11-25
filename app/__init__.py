@@ -5,6 +5,8 @@ import time
 db = SQLAlchemy()
 
 def create_app(conf):
+  global db
+  global api
   app = Flask(__name__)
   app.config.from_pyfile(conf)
 
@@ -13,15 +15,8 @@ def create_app(conf):
   app.app_context().push()
   db.create_all()
 
-  from app.views import public_pages
-  app.register_blueprint(public_pages)
+  from app.routes import main, api_bp
+  app.register_blueprint(main)
+  app.register_blueprint(api_bp)
 
   return app
-
-# app = Flask(__name__)
-# app.config.from_pyfile('config.py', silent=True)
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# db = SQLAlchemy(app)
-# db.create_all()
-
