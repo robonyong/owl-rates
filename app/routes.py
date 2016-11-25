@@ -14,6 +14,6 @@ api = Api(api_bp)
 def index(path):
 	return render_template('index.html')
 
-api.add_resource(OwlsApi, '/api/owls')
-api.add_resource(OwlApi, '/api/owls/<int:owl_id>')
+api.add_resource(OwlsApi, '/api/owls.json')
+api.add_resource(OwlApi, '/api/owls/<int:owl_id>.json')
 api.add_resource(Api404, '/api/<path:path>')

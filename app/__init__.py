@@ -5,8 +5,6 @@ import time
 db = SQLAlchemy()
 
 def create_app(conf):
-  global db
-  global api
   app = Flask(__name__)
   app.config.from_pyfile(conf)
 
