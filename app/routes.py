@@ -9,6 +9,12 @@ main = Blueprint('main', __name__, template_folder='templates')
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
+@main.route('/register', methods=['POST'])
+def register_user(path):
+	pass
+@main.route('/login', methods=['POST'])
+def login_user(path):
+	pass
 @main.route('/', defaults={'path': ''})
 @main.route('/<path:path>')
 def index(path):

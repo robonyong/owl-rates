@@ -4,3 +4,4 @@ __pycache__
 .coverage
 .cache
 flask
+*.log

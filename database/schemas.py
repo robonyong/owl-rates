@@ -51,11 +51,19 @@ class Reviewer(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(100), nullable=False)
 	email = db.Column(db.String(100), unique=True, nullable=False)
+	is_authenticaed = db.Column(db.Boolean)
 	password_hash = db.Column(db.String(128))
+	is_active = db.Column(db.Boolean, default=True)
+	is_anonymous = db.Column(db.Boolean, default=False)
+	tokens = db.Column(db.Text)
 	ratings = db.relationship('Rating', backref='reviewer', lazy='dynamic', cascade='delete')
 	owls = db.relationship('Owl', secondary=assigned_owls)
 	created = db.Column(db.DateTime, default=datetime.now)
 	updated = db.Column(db.DateTime, default=datetime.now)
+
+	def get_id(self):
+		return unicode(self.id)
+
 	def hash_password(self, password):
 		self.password_hash = pwd_context.encrypt(password)
 

@@ -1,0 +1,21 @@
+@import '../node_modules/foundation-sites/scss/foundation';
+
+@include foundation-flex-grid;
+@include foundation-flex-classes;
+@include foundation-everything;
+
+@import './variables';
+@import './mixins';
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: $link;
+}
+
+.top-bar, .top-bar ul {
+	background-color: $light-background;
+}

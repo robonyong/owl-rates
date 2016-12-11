@@ -1,36 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-export class App extends Component {
-	constructor(props) {
-    super(props)
-    // this.handleChange = this.handleChange.bind(this)
-    // this.handleRefreshClick = this.handleRefreshClick.bind(this)
-  }
+import Header from '../components/header';
 
+export class App extends Component {
   render() {
-    const { owls, isFetching } = this.props
-    return (
-      <div>
-      </div>
-    )
+    const { auth, children } = this.props;
+
+    return (<div>
+      <Header auth={auth} />
+      {children}
+    </div>);
   }
 }
 
 App.propTypes = {
-  owls: PropTypes.object.isRequired,
-  visibilityFilter: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
-}
+  children: PropTypes.object,
+};
 
 function mapStateToProps(state) {
-  const { owls, isFetching } = state
-
+  const { auth } = state;
   return {
-    owls,
-    isFetching
-  }
+    auth,
+  };
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

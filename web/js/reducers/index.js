@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 
-import { VisibilityFilters } from '../actions';
 import owls from './owls';
+import auth from './auth';
 import visibilityFilter from './visibilityFilter';
 
 const reducers = combineReducers({
   visibilityFilter,
-  owls
+  owls,
+  auth,
 });
 
 export default reducers;

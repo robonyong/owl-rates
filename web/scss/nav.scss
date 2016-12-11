@@ -1,0 +1,72 @@
+@import './mixins';
+
+.menu-icon.black::after {
+	background: #000;
+	box-shadow: 0 7px 0 #000, 0 14px 0 #000;
+}
+
+@media screen and (max-width: 40em) {
+	.overlay {
+		position: absolute;
+		top: 54px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #000;
+		opacity: 0;
+		z-index: -1;
+		@include transition(opacity 0.5s ease);
+		&.open {
+			opacity: 0.3;
+			z-index: 2;
+			@include transition(opacity 0.5s ease);
+		}
+	}
+	.top-bar .top-bar-right.navbar-collapse {
+		position: absolute;
+		float: none;
+		width: auto;
+		top: 54px;
+		bottom: 0;
+		left: -155px;
+		@include transition(left 0.5s ease);
+		ul.menu {
+			width: 150px;
+			height: 100%;
+			position: relative;
+			> li {
+				display: block;
+			}
+			&:before {
+				display: block;
+				content: '';
+				position: absolute;
+				width: 5px;
+				height: 100%;
+				top: 0px;
+			}
+			&:after {
+				display: block;
+				content: '';
+				position: absolute;
+				width: 5px;
+				height: 100%;
+				top: 0px;
+				right: -5px;
+				background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+			}
+		}
+		&.open {
+			left: 0;
+			z-index: 2;
+			@include transition(left 0.5s ease);
+		}
+	}
+}
+
+@media screen and (max-width: 0em), screen and (min-width: 40em) {
+	.menu-title {
+		display: block;
+		margin: 0 auto;
+	}
+}

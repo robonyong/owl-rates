@@ -1,0 +1,9 @@
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@mixin box-shadow($box-shadow) {
+	-webkit-box-shadow: $box-shadow;
+  box-shadow: $box-shadow;
+}

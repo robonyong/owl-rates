@@ -15,6 +15,7 @@ var deps = [
   'moment/min/moment.min.js',
   // 'jquery/dist/jquery.min.js'
 ];
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = {
   context: path.resolve(assets_path),
@@ -45,15 +46,16 @@ var config = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader?sourceMap']
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader'
+        loader: ExtractTextPlugin.extract(
+          'style-loader', 'css!sass'
+        )
       }
     ],
     noParse: []
   },
+  plugins: [
+    new ExtractTextPlugin('main.css')
+  ]
 };
 
 //Shortcut each major lib to it's min file!

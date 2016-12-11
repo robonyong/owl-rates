@@ -1,10 +1,10 @@
-import {SET_VISIBILITY_FILTER} from '../actions';
+import { SET_VISIBILITY_FILTER } from '../actions';
 
 export default function visibilityFilter(state = 'SHOW_ALL', action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
-      return action.filter
+      return action.filter;
     default:
-      return state
+      return state;
   }
 }
