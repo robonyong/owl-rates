@@ -20,6 +20,6 @@ def login_user(path):
 def index(path):
 	return render_template('index.html')
 
-api.add_resource(OwlsApi, '/api/owls.json')
-api.add_resource(OwlApi, '/api/owls/<int:owl_id>.json')
-api.add_resource(Api404, '/api/<path:path>')
+api.add_resource(Owls_Api, '/api/owls.json')
+api.add_resource(Owl_Api, '/api/owls/<int:owl_id>.json', '/api/owls/<string:owl_slug>.json')
+api.add_resource(Api_404, '/api/<path:path>')
