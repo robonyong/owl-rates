@@ -2,7 +2,7 @@
 var webpack = require('webpack');
 
 var path = require('path'),
-  assets_path = path.join(__dirname, 'js'),
+  assets_path = path.join(__dirname, 'src'),
   bundle_path = path.join(__dirname, '../', 'app', 'static'),
   node_modules_dir = path.join(__dirname, 'node_modules');
 

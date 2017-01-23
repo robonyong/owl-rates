@@ -7,8 +7,6 @@ import '../../scss/nav.scss';
 export default class Header extends Component {
   constructor(props) {
     super(props);
-    // this.handleChange = this.handleChange.bind(this)
-    // this.handleRefreshClick = this.handleRefreshClick.bind(this)
     this.state = {
       openMobile: false,
     };
@@ -29,13 +27,13 @@ export default class Header extends Component {
 
     return (
       <TopBar>
-        <area tabIndex='-1' onClick={() => this.toggleMobileMenu()} className={`overlay ${mobileClass}`} />
+        <area tabIndex={-1} onClick={() => this.toggleMobileMenu()} className={`overlay ${mobileClass}`} />
         <TopBarTitle>
           <Menu>
             <MenuItem onClick={() => this.toggleMobileMenu()} className='show-for-small-only'>
               <span className='menu-icon black' />
             </MenuItem>
-            <MenuItem text className='menu-title'><Link to='/'>GoodHoots</Link></MenuItem>
+            <MenuItem className='menu-title'><Link to='/'>GoodHoots</Link></MenuItem>
           </Menu>
         </TopBarTitle>
         <TopBarRight className={`navbar-collapse ${mobileClass}`}>

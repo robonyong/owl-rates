@@ -11,7 +11,7 @@ const Routes = () => (
       <IndexRoute component={OwlsList} />
       <Route path='owls'>
         <IndexRoute component={OwlsList} />
-        <Route path=':id' component={OwlView} />
+        <Route path=':slug' component={OwlView} />
       </Route>
     </Route>
   </Router>

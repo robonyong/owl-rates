@@ -2,7 +2,7 @@
 var webpack = require('webpack');
 
 var path = require('path'),
-  assets_path = path.join(__dirname, 'js'),
+  assets_path = path.join(__dirname, 'src'),
   bundle_path = path.join(__dirname, '../', 'app', 'static'),
   node_modules_dir = path.join(__dirname, 'node_modules');
 
@@ -37,7 +37,11 @@ var config = {
       { test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         include: [ path.resolve(assets_path) ],
-        loader: "babel-loader"
+        loader: "babel-loader",
+        query: {
+          plugins: ['transform-runtime'],
+          presets: ['es2015', 'stage-0', 'react'],
+        }
       },
       { test: /\.json$/,
         include: /\.json$/,

@@ -9,7 +9,9 @@ export class App extends Component {
 
     return (<div>
       <Header auth={auth} />
-      {children}
+      <div className='container'>
+        {children}
+      </div>
     </div>);
   }
 }
