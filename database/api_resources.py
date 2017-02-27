@@ -1,20 +1,10 @@
 import decimal, datetime
 from flask_restful import Resource
-from flask import jsonify, make_response
+from flask import jsonify, make_response, request, g
 
 from app import db
 from database import *
-
-def alchemyencoder(obj):
-  """JSON encoder function for SQLAlchemy special classes."""
-  if isinstance(obj, datetime.date):
-      return obj.isoformat()
-  elif isinstance(obj, decimal.Decimal):
-      return float(obj)
-
-def to_dict(obj):
-  obj.__dict__.pop('_sa_instance_state', None)
-  return obj.__dict__
+from database.utilities import to_dict
 
 class Owls_Api(Resource):
   def get(self):
@@ -24,10 +14,10 @@ class Owls_Api(Resource):
 
 class Owl_Api(Resource):
   def get(self, owl_id=None, owl_slug=None):
-    useSlug = owl_id is None and owl_slug is not None
-    query = Owl.slug==owl_slug if useSlug else Owl.id==owl_id
-    value = owl_slug if useSlug else owl_id
-    key = 'slug' if useSlug else 'id'
+    use_slug = owl_id is None and owl_slug is not None
+    query = Owl.slug==owl_slug if use_slug else Owl.id==owl_id
+    value = owl_slug if use_slug else owl_id
+    key = 'slug' if use_slug else 'id'
     try:
       owl = Owl.query.filter(query).first()
       if owl is None:
@@ -47,6 +37,20 @@ class Owl_Api(Resource):
       return make_response(jsonify(owl), status_code)
     except:
       raise
+
+class Reviewer_Account_Api(Resource):
+  def post(self):
+    reviewer = g.reviewer
+    reviewer = to_dict(reviewer)
+    reviewer.pop('password_hash', None)
+    return jsonify(reviewer)
+
+class Reviewer_Api(Resource):
+  def get(self, reviewer_id):
+    reviewer = Reviewer.query.fiter_by(id=reviewer_id).first()
+    reviewer = to_dict(reviewer)
+    reviewer.pop('password_hash', None)
+    return jsonify(reviewer)
 
 class Api_404(Resource):
   def return_not_found_api(self, path):

@@ -50,6 +50,7 @@ export class OwlView extends Component {
     });
     return (
       <div>
+        <p className='m-b-20'><small><a href="/owls">&larr; Back to owls</a></small></p>
         <MediaObject>
           <MediaObjectSection className='text-center'>
             <Thumbnail className='m-b-0' src={owl.imageThumbnail} />
@@ -79,11 +80,8 @@ export class OwlView extends Component {
           title={`John Audubon's ${owl.name}`}
           onClose={() => this.closeModals()}
         >
-          { owl.descriptions.map((d, idx) => {
-              const endQuote = (idx === owl.descriptions.length - 1) ? '"' : '';
-              return <p key={`${owl.slug}-description-${d.idx}`}>"{d.description}{endQuote}</p>;
-            })
-          }
+          <p><small><a href={`http://www.audubon.org${owl.nasLink}`}>Read on Audubon.org</a></small></p>
+          { owl.descriptions.map(d => <p key={`${owl.slug}-description-${d.idx}`}>{d.description}</p>) }
         </Modal>
       </div>
     );
